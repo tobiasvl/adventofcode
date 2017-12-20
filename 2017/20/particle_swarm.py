@@ -29,13 +29,14 @@ while time_since_last_collision < 1000:
         particles[p]['v'] = tuple(map(add, particles[p]['v'], particles[p]['a']))
         particles[p]['p'] = tuple(map(add, particles[p]['p'], particles[p]['v']))
         distances[p] = sum(map(abs, particles[p]['p']))
-        positions[particles[p]['p']].append(p)
+        if p in safe_particles:
+            positions[particles[p]['p']].append(p)
     shortest_distances[distances.index(min(distances))] += 1
-    for k, v in positions.iteritems():
-        if len(v) > 1:
+    for _, collisions in positions.iteritems():
+        if len(collisions) > 1:
             time_since_last_collision = 0
-            for i in v:
-                safe_particles.remove(i)
+            for c in collisions:
+                safe_particles.remove(c)
 
 closest_particle = max(shortest_distances.iteritems(), key=itemgetter(1))[0]
 print "Particle %d stays closest to position <0,0,0>" % closest_particle
