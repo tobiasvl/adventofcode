@@ -1,7 +1,7 @@
 import hashlib
 import re
 
-def find(input):
+def find(input, stretch=False):
     index = 0
     three = re.compile(r'(\w)\1{2}')
     five = re.compile(r'(\w)\1{4}')
@@ -9,6 +9,9 @@ def find(input):
     keys = set()
     while True:
         md5 = hashlib.md5('%s%d' % (input, index)).hexdigest()
+        if stretch:
+            for i in range(2016):
+                md5 = hashlib.md5(md5).hexdigest()
         result = re.search(five, md5)
         if result:
             for k, v in potential_keys.iteritems():
@@ -22,3 +25,4 @@ def find(input):
         index += 1
 
 print "This index produces the 64th key: %s" % find('ngcjuoqr')
+print "With stretching, this index produces the 64th key: %s" % find('ngcjuoqr', True)
