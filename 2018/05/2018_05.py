@@ -13,6 +13,7 @@ def react(polymer):
             result += c
     return result
 
-print len(react(polymer))
+collapsed = react(polymer)
 
-print min(map(len, [react(polymer.replace(l[0], '').replace(l[1], '')) for l in zip(lower, upper)]))
+print len(collapsed)
+print min(map(len, [react(collapsed.replace(l[0], '').replace(l[1], '')) for l in zip(lower, upper)]))
