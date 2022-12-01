@@ -1,7 +1,7 @@
 name: Update 2021 badge
 on:
-  schedule:                                      # run workflow based on schedule
-    - cron: '11 0 1-25 12 *'                     # from the 1. December till 25. December every day at 11 AM (avoid load at full hours)
+# schedule:                                      # run workflow based on schedule
+#   - cron: '11 0 1-25 12 *'                     # from the 1. December till 25. December every day at 11 AM (avoid load at full hours)
     
   workflow_dispatch:                             # allow to manually start the workflow 
   
@@ -12,7 +12,7 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2                # clones your repo
+      - uses: actions/checkout@v3                # clones your repo
           
       - uses: joblo2213/aoc-badges-action@v3
         with:
