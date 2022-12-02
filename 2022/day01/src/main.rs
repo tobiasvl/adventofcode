@@ -18,7 +18,7 @@ fn part1(lines: &str) -> u32 {
 fn part2(lines: &str) -> u32 {
     let mut elves = sum_elves(&collect_elves(lines));
     elves.sort_unstable();
-    elves.iter().rev().take(3).sum()
+    elves.iter().sorted().rev().take(3).sum()
 }
 
 fn main() {
